@@ -1,5 +1,5 @@
-Slack Ruby Bot Server Events AppMentions
-=====================================
+Slack Ruby Bot Server Events App Mentions
+=========================================
 
 [![Gem Version](https://badge.fury.io/rb/slack-ruby-bot-server-events-app-mentions.svg)](https://badge.fury.io/rb/slack-ruby-bot-server-events-app-mentions)
 [![Build Status](https://travis-ci.org/slack-ruby/slack-ruby-bot-server-events-app-mentions.svg?branch=master)](https://travis-ci.org/slack-ruby/slack-ruby-bot-server-events-app-mentions)
@@ -22,7 +22,27 @@ gem 'slack-ruby-bot-server-events-app-mentions'
 
 #### Configure
 
-TODO
+The [`app_mentions:read`](https://api.slack.com/scopes/app_mentions:read) OAuth scope is required to receive mentions in channels and [`im:history`](https://api.slack.com/scopes/im:history) to receive direct messages.
+
+```ruby
+SlackRubyBotServer.configure do |config|
+  config.oauth_version = :v2
+  config.oauth_scope = ['app_mentions:read', 'im:history']
+end
+```
+
+#### Implement Mentions
+
+```ruby
+class Ping < SlackRubyBotServer::Events::AppMentions::Base
+  mention 'ping'
+
+  def self.call(data, match)
+    client = Slack::Web::Client.new(token: data.team.token)
+    client.chat_postMessage(channel: data.channel, text: 'pong')
+  end
+end
+```
 
 ### Copyright & License
 
