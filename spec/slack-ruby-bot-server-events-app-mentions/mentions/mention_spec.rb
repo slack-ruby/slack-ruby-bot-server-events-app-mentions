@@ -5,9 +5,19 @@ require 'spec_helper'
 describe SlackRubyBotServer::Events::AppMentions do
   let!(:team) { Fabricate(:team) }
 
-  let! :command do
-    Class.new(SlackRubyBotServer::Events::AppMentions::Base) do
-      mention 'ping' do |data, _match|
+  let(:message) do
+    Slack::Messages::Message.new(
+      'team_id' => team.team_id,
+      'event' => {
+        'channel' => 'channel',
+        'text' => "<@#{team.bot_user_id}> ping"
+      }
+    )
+  end
+
+  let!(:mention) do
+    Class.new(SlackRubyBotServer::Events::AppMentions::Mention) do
+      mention 'ping' do |data|
         client = Slack::Web::Client.new(token: data.team.token)
         client.chat_postMessage(text: 'pong', channel: data.channel)
       end
@@ -15,7 +25,7 @@ describe SlackRubyBotServer::Events::AppMentions do
   end
 
   it 'registers mention' do
-    expect(SlackRubyBotServer::Events::AppMentions::Base.mention_classes).to include command
+    expect(SlackRubyBotServer::Events::AppMentions::Mention.handlers).to include mention
   end
 
   it 'invokes a mention' do
@@ -26,13 +36,7 @@ describe SlackRubyBotServer::Events::AppMentions do
     SlackRubyBotServer::Events.config.run_callbacks(
       :event,
       %w[event_callback app_mention],
-      {
-        'team_id' => team.team_id,
-        'event' => {
-          'channel' => 'channel',
-          'text' => "<@#{team.bot_user_id}> ping"
-        }
-      }
+      message
     )
   end
 end

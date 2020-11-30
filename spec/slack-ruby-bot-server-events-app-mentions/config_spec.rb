@@ -4,6 +4,7 @@ require 'spec_helper'
 
 describe SlackRubyBotServer::Events::AppMentions::Config do
   %i[
+    handlers
   ].each do |k|
     context "with #{k} set" do
       before do

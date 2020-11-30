@@ -5,15 +5,15 @@ require_relative 'support/match'
 module SlackRubyBotServer
   module Events
     module AppMentions
-      class Base
+      class Mention
         include SlackRubyBotServer::Loggable
 
         class << self
-          attr_accessor :mention_classes
+          attr_accessor :handlers
 
           def inherited(subclass)
-            SlackRubyBotServer::Events::AppMentions::Base.mention_classes ||= []
-            SlackRubyBotServer::Events::AppMentions::Base.mention_classes << subclass
+            SlackRubyBotServer::Events::AppMentions::Mention.handlers ||= []
+            SlackRubyBotServer::Events::AppMentions::Mention.handlers << subclass
           end
 
           def mention(*values, &block)
@@ -28,7 +28,7 @@ module SlackRubyBotServer
               match = route.match(data.text)
               next unless match
 
-              call_mention(data, Support::Match.new(match), options[:block])
+              call_mention(data.merge(match: Support::Match.new(match)), options[:block])
               return true
             end
             false
@@ -48,11 +48,11 @@ module SlackRubyBotServer
             name ? name.split(':').last.downcase : object_id.to_s
           end
 
-          def call_mention(data, match, block)
+          def call_mention(data, block)
             if block
-              block.call(data, match)
+              block.call(data)
             elsif respond_to?(:call)
-              send(:call, data, match)
+              send(:call, data)
             else
               raise NotImplementedError, data.text
             end

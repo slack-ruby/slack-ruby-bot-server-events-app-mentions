@@ -20,7 +20,7 @@ Add 'slack-ruby-bot-server-events-app-mentions' to Gemfile.
 gem 'slack-ruby-bot-server-events-app-mentions'
 ```
 
-#### Configure
+#### Configure OAuth Scopes
 
 The [`app_mentions:read`](https://api.slack.com/scopes/app_mentions:read) OAuth scope is required to receive mentions in channels and [`im:history`](https://api.slack.com/scopes/im:history) to receive direct messages.
 
@@ -33,14 +33,39 @@ end
 
 #### Implement Mentions
 
+Define a `mention` and implement a `call` class method that takes event data that has been extended with `team` and a regular expression `match` object.
+
 ```ruby
-class Ping < SlackRubyBotServer::Events::AppMentions::Base
+class Ping < SlackRubyBotServer::Events::AppMentions::Mention
   mention 'ping'
 
-  def self.call(data, match)
+  def self.call(data)
     client = Slack::Web::Client.new(token: data.team.token)
     client.chat_postMessage(channel: data.channel, text: 'pong')
   end
+end
+```
+
+Mentions can be free-formed regular expressions.
+
+```ruby
+class PingWithNumber < SlackRubyBotServer::Events::AppMentions::Mention
+  mention(/ping[[:space:]]+(?<number>[[:digit:]]+)$/)
+
+  def self.call(data)
+    client = Slack::Web::Client.new(token: data.team.token)
+    client.chat_postMessage(channel: data.channel, text: "pong #{data.match['number']}")
+  end
+end
+```
+
+#### Configure Handlers
+
+By default this library will attempt to match any mention that inherits from `SlackRubyBotServer::Events::AppMentions::Mention` in the order of class loading. You can also configure the list of handlers.
+
+```ruby
+SlackRubyBotServer::Events::AppMentions.configure do |config|
+  config.handlers = [ Ping, Ring ]
 end
 ```
 

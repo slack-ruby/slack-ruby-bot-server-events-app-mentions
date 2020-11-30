@@ -7,11 +7,19 @@ module SlackRubyBotServer
         extend self
 
         ATTRIBUTES = %i[
+          handlers
         ].freeze
 
-        attr_accessor(*Config::ATTRIBUTES)
+        attr_accessor(*Config::ATTRIBUTES - [:handlers])
+        attr_writer :handlers
 
-        def reset!; end
+        def handlers
+          @handlers || SlackRubyBotServer::Events::AppMentions::Mention.handlers
+        end
+
+        def reset!
+          self.handlers = nil
+        end
       end
 
       class << self
