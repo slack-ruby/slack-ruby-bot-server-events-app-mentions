@@ -6,12 +6,16 @@ describe SlackRubyBotServer::Events::AppMentions do
   let!(:team) { Fabricate(:team) }
 
   let(:message) do
-    Slack::Messages::Message.new(
-      'team_id' => team.team_id,
-      'event' => {
-        'channel' => 'channel',
-        'text' => "<@#{team.bot_user_id}> ping"
-      }
+    SlackRubyBotServer::Events::Requests::Event.new(
+      {
+        'token' => 'fake',
+        'team_id' => team.team_id,
+        'event' => {
+          'channel' => 'channel',
+          'text' => "<@#{team.bot_user_id}> ping"
+        }
+      },
+      nil
     )
   end
 
