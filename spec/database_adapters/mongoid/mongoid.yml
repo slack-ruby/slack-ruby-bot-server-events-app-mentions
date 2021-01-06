@@ -1,7 +1,7 @@
 development:
   clients:
     default:
-      database: slack-ruby-bot-server-events_development
+      database: slack-ruby-bot-server-events-app-mentions_development
       hosts:
         - 127.0.0.1:27017
   options:
@@ -11,7 +11,7 @@ development:
 test:
   clients:
     default:
-      database: slack-ruby-bot-server-events_test
+      database: slack-ruby-bot-server-events-app-mentions_test
       hosts:
         - 127.0.0.1:27017
   options:
