@@ -2,7 +2,9 @@ Slack Ruby Bot Server Events App Mentions
 =========================================
 
 [![Gem Version](https://badge.fury.io/rb/slack-ruby-bot-server-events-app-mentions.svg)](https://badge.fury.io/rb/slack-ruby-bot-server-events-app-mentions)
-[![Build Status](https://travis-ci.org/slack-ruby/slack-ruby-bot-server-events-app-mentions.svg?branch=master)](https://travis-ci.org/slack-ruby/slack-ruby-bot-server-events-app-mentions)
+[![lint](https://github.com/slack-ruby/slack-ruby-bot-server-events-app-mentions/actions/workflows/rubocop.yml/badge.svg)](https://github.com/slack-ruby/slack-ruby-bot-server-events-app-mentions/actions/workflows/rubocop.yml)
+[![test with mongodb](https://github.com/slack-ruby/slack-ruby-bot-server-events-app-mentions/actions/workflows/test-mongodb.yml/badge.svg)](https://github.com/slack-ruby/slack-ruby-bot-server-events-app-mentions/actions/workflows/test-mongodb.yml)
+[![test with postgresql](https://github.com/slack-ruby/slack-ruby-bot-server-events-app-mentions/actions/workflows/test-postgresql.yml/badge.svg)](https://github.com/slack-ruby/slack-ruby-bot-server-events-app-mentions/actions/workflows/test-postgresql.yml)
 
 An extension to [slack-ruby-bot-server-events](https://github.com/slack-ruby/slack-ruby-bot-server-events) that makes it easier to handle [app mentions](https://api.slack.com/events/app_mention) - message events that directly mention your bot user.
 
