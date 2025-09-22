@@ -6,10 +6,10 @@
 * [#4](https://github.com/slack-ruby/slack-ruby-bot-server-events-app-mentions/pull/4): Upgraded RuboCop to 1.80.2 - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
-#### 0.1.1 (01/06/2021)
+#### 0.1.1 (2021/01/06)
 
 * [#1](https://github.com/slack-ruby/slack-ruby-bot-server-events-app-mentions/pull/1): Fix: fetch text via hash accessor - [@robholland](https://github.com/robholland).
 
-#### 0.1.0 (11/30/2020)
+#### 0.1.0 (2020/11/30)
 
 * Initial public release - [@dblock](https://github.com/dblock).
