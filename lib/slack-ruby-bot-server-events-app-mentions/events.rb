@@ -8,7 +8,7 @@ SlackRubyBotServer::Events.configure do |config|
     team = Team.where(team_id: event['team_id']).first
     next unless team
 
-    bot_regexp = Regexp.new("^\<\@#{team.bot_user_id}\>[[:space:]]*")
+    bot_regexp = Regexp.new("^<@#{team.bot_user_id}>[[:space:]]*")
 
     data = Slack::Messages::Message.new(data).merge(
       text: data['text'].gsub(bot_regexp, ''),
