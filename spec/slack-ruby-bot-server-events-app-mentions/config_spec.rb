@@ -12,6 +12,7 @@ describe SlackRubyBotServer::Events::AppMentions::Config do
           config.send("#{k}=", 'set')
         end
       end
+
       it "sets and returns #{k}" do
         expect(SlackRubyBotServer::Events::AppMentions.config.send(k)).to eq 'set'
       end
