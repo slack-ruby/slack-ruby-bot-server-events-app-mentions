@@ -1,5 +1,9 @@
 ### Changelog
 
+#### 0.2.1 (Next)
+
+* Your contribution here.
+
 #### 0.2.0 (2025/09/22)
 
 * [#4](https://github.com/slack-ruby/slack-ruby-bot-server-events-app-mentions/pull/4): Replaced Travis-CI with GHA - [@dblock](https://github.com/dblock).
