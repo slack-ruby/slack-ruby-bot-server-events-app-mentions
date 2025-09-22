@@ -8,6 +8,16 @@ Slack Ruby Bot Server Events App Mentions
 
 An extension to [slack-ruby-bot-server-events](https://github.com/slack-ruby/slack-ruby-bot-server-events) that makes it easier to handle [app mentions](https://api.slack.com/events/app_mention) - message events that directly mention your bot user.
 
+### Table of Contents
+
+- [Sample](#sample)
+- [Usage](#usage)
+  - [Gemfile](#gemfile)
+  - [Configure OAuth Scopes](#configure-oauth-scopes)
+  - [Implement Mentions](#implement-mentions)
+  - [Configure Handlers](#configure-handlers)
+- [Copyright & License](#copyright--license)
+
 ### Sample
 
 See [slack-ruby/slack-ruby-bot-server-events-app-mentions-sample](https://github.com/slack-ruby/slack-ruby-bot-server-events-app-mentions-sample) for a working sample.
@@ -73,6 +83,6 @@ end
 
 ### Copyright & License
 
-Copyright [Daniel Doubrovkine](http://code.dblock.org) and Contributors, 2020
+Copyright [Daniel Doubrovkine](http://code.dblock.org) and Contributors, 2020-2025
 
 [MIT License](LICENSE)
