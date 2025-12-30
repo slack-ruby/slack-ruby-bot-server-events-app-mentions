@@ -2,6 +2,7 @@
 
 #### 0.2.1 (Next)
 
+* [#6](https://github.com/slack-ruby/slack-ruby-bot-server-events-app-mentions/pull/6): Migrated Danger to danger-pr-comment workflow - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 #### 0.2.0 (2025/09/22)
