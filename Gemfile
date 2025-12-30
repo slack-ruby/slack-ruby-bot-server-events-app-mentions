@@ -24,6 +24,10 @@ gemspec
 
 group :development, :test do
   gem 'bundler'
+  gem 'danger'
+  gem 'danger-changelog', require: false
+  gem 'danger-pr-comment', require: false
+  gem 'danger-toc', require: false
   gem 'database_cleaner'
   gem 'fabrication'
   gem 'faker'
